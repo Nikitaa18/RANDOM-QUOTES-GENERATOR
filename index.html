@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head> </head>
+    <meta name="viewport" content="width=device-width, initial-scale =1.0">
+    <title> Quote of the day </title>
+    <link rel="stylesheet" href="style.css">
+<body>
+    <div class="head">
+        <img class="logo_main" src="WhatsApp Image 2023-12-04 at 8.22.18 PM.jpeg" alt="logo_main">
+        <div class="navbar">
+                <li type="none" class="n1">Home</li>
+                <li type="none" class="n2">About </li>
+                <li type="none" class="n3"><a href="http://127.0.0.1:5500/subscription.html" class="plan">Subscription </a></li>
+                <li type="none" class="n4">Contact</li>
+                <img src="sun.jpeg" id="sun-pic" onclick="darkMode()">
+                <img src="moon.jpeg" id="moon-pic" onclick="lightMode()">
+
+        </div>
+    </div>
+    <div class="quote-box">
+        <h2> Quote of the day</h2>
+        <blockquote id="quote"> Loading...</blockquote>
+        <span id="author"> Loading...</span>
+        <div>
+            <button onclick="getquote(api_url)"> New Quote</button>
+            <button onclick="tweet()"><img src="twitter.jpeg"</button>
+        </div>
+    </div>  
+<script>
+    alert("Welcome To World of random quotes")
+  const quote = document.getElementById("quote");
+  const author = document.getElementById("author");   
+const api_url = "https://api.quotable.io/random";
+
+async function getquote(url){
+    const response = await fetch(url);
+    var data = await response.json();
+    
+    quote.innerHTML =data.content;
+    author.innerHTML =data.author;
+}
+
+
+getquote(api_url);
+function tweet(){
+    window.open(href="https://twitter.com/intent/tweet?text=" + quote.innerHTML, + "---- by " + author.innerHTML , "Tweet window", "width=600 , height = 300")
+}
+var sun = document.getElementById("sun-pic")
+var moon = document.getElementById("moon-pic")
+var body = document.getElementsByTagName("body")[0]
+function darkMode(){
+    sun.style.display="none"
+    moon.style.display="block"
+    body.classList.toggle("body-light")
+}
+function lightMode(){
+    sun.style.display="block"
+    moon.style.display="none"
+    body.classList.toggle("body-light")
+}
+</script></body>
+</html>
